@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bamboo2"
+    tools:context="com.gmail.piyushranjan95.car.DeviceListActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/deviceListToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        ></android.support.v7.widget.Toolbar>
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:theme="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:background="#ff3d00"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        android:text="REFRESH"
+        android:fontFamily="sans-serif-thin"
+        />
+
+    <ListView
+        android:id="@+id/deviceList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/refreshButton"
+        android:layout_below="@id/deviceListToolbar"
+        ></ListView>
+
+
+</RelativeLayout>

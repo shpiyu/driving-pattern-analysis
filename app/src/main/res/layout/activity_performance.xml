@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/performanceView"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bamboo2"
+    tools:context="com.gmail.piyushranjan95.car.PerformanceActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/scoreViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4e4e4e"
+        android:text=""
+        android:textSize="45sp"
+        android:textAlignment="center"
+        android:layout_marginTop="52dp"
+        />
+    <TextView
+        android:id="@+id/scoreView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scoreViewLabel"
+        android:text="50"
+        android:textSize="112sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4e4e4e"
+        android:paddingTop="24dp"
+        android:fontFamily="sans-serif-black"
+        />
+    <TextView
+        android:id="@+id/stub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="out of 100"
+        android:layout_below="@id/scoreView"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4e4e4e"
+        android:textSize="24sp"
+        />
+
+</RelativeLayout>

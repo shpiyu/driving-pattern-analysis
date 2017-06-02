@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gmail.piyushranjan95.car.LockingActivity">
+    <Button
+        android:id="@+id/scoreButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:theme="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:background="#ff3d00"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        android:text="YOUR PERFORMANCE"
+        android:fontFamily="sans-serif-thin"
+        />
+
+    <RelativeLayout
+        android:id="@+id/carLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/car"
+        android:layout_above="@id/scoreButton"
+        >
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/lampButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/lamp"-->
+            <!--android:background="@null"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_centerHorizontal="true" />-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/engineButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:background="@drawable/circle"-->
+            <!---->
+            <!--android:layout_below="@+id/toggleButton"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="70dp" />-->
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="START\nENGINE"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/circle"-->
+            <!--android:layout_below="@+id/lampButton"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="78dp"-->
+            <!--android:id="@+id/button" />-->
+        <ToggleButton
+            android:id="@+id/lockButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/lockbutton"
+            android:textOff=""
+            android:textOn=""
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="176dp" />
+
+    </RelativeLayout>
+</RelativeLayout>

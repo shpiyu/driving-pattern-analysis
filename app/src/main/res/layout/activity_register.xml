@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@drawable/bamboo2"
+    tools:context="com.gmail.piyushranjan95.car.RegisterActivity"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:textColor="#333333"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="34sp"
+        android:paddingBottom="25dp"
+        />
+
+    <ImageButton
+        android:id="@+id/uploadAvatarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/upload"
+        android:background="@null"
+        />
+    <TextView
+        android:id="@+id/uploadAvatarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Avatar"
+        android:layout_below="@id/uploadAvatarButton"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/usernameTextBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/uploadAvatarText"
+        android:layout_marginTop="45dp"
+        android:hint="Enter your name"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="24sp"
+        android:background="@drawable/edittextbackground"
+        android:padding="12dp"
+        android:textColorHint="#808080"
+        android:maxLines="1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:inputType="textPersonName"
+
+        />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:theme="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:background="#ff3d00"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        android:text="NEXT"
+        android:fontFamily="sans-serif-thin"
+        />
+
+</RelativeLayout>
