@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                 editor.commit();
                 Log.d("username",username);
                 Log.d("username","saved name "+pref.getString("username","fg"));
-                startActivity(new Intent(getApplicationContext(),LockingActivity.class));
+                startActivity(new Intent(getApplicationContext(),DeviceListActivity.class));
             }
         });
     }

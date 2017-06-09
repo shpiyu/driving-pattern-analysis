@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gmail.piyushranjan95.car.classifiers.boosting.Adaboost;
+import com.gmail.piyushranjan95.car.preprocessing.Converter;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -40,7 +41,7 @@ public class PerformanceActivity extends AppCompatActivity {
     private String name;
     private int score;
     private int savedScore, calculatedScore;
-    private String localhost = "172.16.4.193";//"192.168.1.105";
+    private String localhost = "192.168.43.250"; //"172.16.4.193";//"192.168.1.105";
 
     private TextView scoreViewLabel, scoreView, stub;
     private RelativeLayout layout;
@@ -52,6 +53,8 @@ public class PerformanceActivity extends AppCompatActivity {
 
     /** from adaboost **/
     private String[] inputs;
+
+    private Converter converter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,16 @@ public class PerformanceActivity extends AppCompatActivity {
         // TODO: 28/5/17 calculate score from Adaboost test file
 
 
+        /*********preprocessing starts **********************/
+
+        converter = new Converter();
+        converter.initializeConverter();
+        converter.readInput("myinput.csv");
+        converter.makeChangeRateList();
+        converter.processing();
+
+
+        /*********prerocessing ends***************************/
 
 
         /*********adaboost calculation starts ****************/
@@ -88,12 +101,14 @@ public class PerformanceActivity extends AppCompatActivity {
 
         File sdcard = Environment.getExternalStorageDirectory();
         File file = new File("/sdcard/trainSamples.psv");
+        //File file = new File("/sdcard/newTrain.psv");
         Adaboost boosting;
         Log.d("tag","hello");
         //ArrayList<String> values = new ArrayList<>();
         int sampleCount=0;
-        // File testFile = new File(sdcard, "testSamples.psv");
-        File testFile = new File("/sdcard/testSamples.psv");
+        // TODO: 8/6/17 changes made here
+        //File testFile = new File("/sdcard/testSamples.psv");
+        File testFile = new File("/sdcard/finalTest.csv");
         try {
             sampleCount = getTotalSamplesNumber(testFile);
         } catch (IOException e) {
@@ -115,7 +130,29 @@ public class PerformanceActivity extends AppCompatActivity {
             Log.d("tag",inputs[0]);
             for(int i=0;i<inputs.length;i++){
                 Log.d("tag",inputs[i]);
-                labels[i] = boosting.classify(inputs[i].split("\\|"));
+                // TODO: 8/6/17 change to pipes if nothing works \\|
+                // earlier  :
+                // labels[i] = boosting.classify(inputs[i].split("\\,"));
+
+                //int k=0;
+                String results[] = inputs[i].split("\\,");
+                String values[] = new String[results.length];
+                for(int j=0;j<results.length;j++){
+                    String str = results[j];
+                    str = str.substring(0, str.length()-1);
+                    str = str.substring(1);
+
+                    if(Double.isNaN(Double.parseDouble(str))){
+                        //values[j] = "0.0";
+                        continue;
+                    } else {
+                        values[j] = str;
+                    }
+                }
+
+                //labels[i] = boosting.classify(inputs[i].split("\\,"));
+
+                labels[i] = boosting.classify(values);
                 Log.d("tag",labels[i]+"");
 
             }
