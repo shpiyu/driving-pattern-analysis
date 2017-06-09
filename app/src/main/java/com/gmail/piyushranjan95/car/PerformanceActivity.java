@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -80,14 +79,11 @@ public class PerformanceActivity extends AppCompatActivity {
         SharedPreferences pref2 = getSharedPreferences("scorePref", MODE_PRIVATE);
         savedScore = pref2.getInt("score", 0);
 
-        //calculatedScore = 52;
-        // TODO: 28/5/17 calculate score from Adaboost test file
-
 
         /*********preprocessing starts **********************/
 
         converter = new Converter();
-        converter.initializeConverter();
+        converter.initializeConverter(163,6000);//top speed and max rpm
         converter.readInput("myinput.csv");
         converter.makeChangeRateList();
         converter.processing();
@@ -99,15 +95,11 @@ public class PerformanceActivity extends AppCompatActivity {
         /*********adaboost calculation starts ****************/
 
 
-        File sdcard = Environment.getExternalStorageDirectory();
+
         File file = new File("/sdcard/trainSamples.psv");
-        //File file = new File("/sdcard/newTrain.psv");
         Adaboost boosting;
         Log.d("tag","hello");
-        //ArrayList<String> values = new ArrayList<>();
         int sampleCount=0;
-        // TODO: 8/6/17 changes made here
-        //File testFile = new File("/sdcard/testSamples.psv");
         File testFile = new File("/sdcard/finalTest.csv");
         try {
             sampleCount = getTotalSamplesNumber(testFile);
@@ -119,22 +111,14 @@ public class PerformanceActivity extends AppCompatActivity {
         Log.d("tag",sampleCount+"");
 
 
-
         int[] labels = new int[sampleCount];
-        //String[] inputs = new String[sampleCount];
         inputs = new String[sampleCount];
         try {
-            //  inputs = getInputs(testFile,sampleCount);
             getInputs(testFile,sampleCount);
             boosting = Adaboost.train(file, 10, 10, 0);
             Log.d("tag",inputs[0]);
             for(int i=0;i<inputs.length;i++){
                 Log.d("tag",inputs[i]);
-                // TODO: 8/6/17 change to pipes if nothing works \\|
-                // earlier  :
-                // labels[i] = boosting.classify(inputs[i].split("\\,"));
-
-                //int k=0;
                 String results[] = inputs[i].split("\\,");
                 String values[] = new String[results.length];
                 for(int j=0;j<results.length;j++){
@@ -143,15 +127,11 @@ public class PerformanceActivity extends AppCompatActivity {
                     str = str.substring(1);
 
                     if(Double.isNaN(Double.parseDouble(str))){
-                        //values[j] = "0.0";
                         continue;
                     } else {
                         values[j] = str;
                     }
                 }
-
-                //labels[i] = boosting.classify(inputs[i].split("\\,"));
-
                 labels[i] = boosting.classify(values);
                 Log.d("tag",labels[i]+"");
 
@@ -163,7 +143,6 @@ public class PerformanceActivity extends AppCompatActivity {
 
 
 
-        final double percent;
         int sum=0;
         for(int i=0;i<sampleCount;i++)
         {
@@ -193,7 +172,6 @@ public class PerformanceActivity extends AppCompatActivity {
 
 
         //start score animation
-        //score = 50;
         int dur = 2;
         startCountAnimation(calculatedScore, dur);
 

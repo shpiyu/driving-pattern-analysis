@@ -16,22 +16,24 @@ import java.util.ArrayList;
  * Created by piyush on 9/6/17.
  */
 public class Converter {
-    private final double maxSpeed = 163; //220
-    private final double maxRPM = 6000; //8k
+    private double maxSpeed; //220
+    private double maxRPM; //8k
     private double maxjq;
     private double maxzs;
 
     private ArrayList<String[]> inputList;
     private ArrayList<String[]> changeRateList;
     private ArrayList<String[]> outputList;
-    private ArrayList<Double[]> outputListDouble;
 
-    public void initializeConverter()
+
+    public void initializeConverter(double speed, double rpm)
     {
+        maxSpeed = speed;
+        maxRPM = rpm;
         inputList = new ArrayList<>();
         changeRateList = new ArrayList<>();
         outputList = new ArrayList<>();
-        outputListDouble = new ArrayList<>();
+
     }
 
 
@@ -101,7 +103,6 @@ public class Converter {
 
 
             outputList.add(resa);
-            //outputListDouble.add(cast(resa));
         }
 
         writeResults(outputList);
@@ -124,21 +125,12 @@ public class Converter {
 
     private void writeResults(ArrayList<String[]> resa){
         try {
-            //File testFile = new File("/sdcard/firstOutput.csv");
-            //String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+
             String fileName = "firstOutput.csv";
             String filePath = "/sdcard" + File.separator + fileName;
             Log.d("op",filePath);
-            //File f = new File(filePath );
             CSVWriter writer;
-// File exist
-//            if(f.exists() && !f.isDirectory()){
-//                mFileWriter = new FileWriter(filePath , true);
-//                writer = new CSVWriter(mFileWriter);
-//            }
-//            else {
             writer = new CSVWriter(new FileWriter(filePath));
-//            }
             writer.writeAll(resa);
             writer.close();
         } catch (IOException e) {
